@@ -7,7 +7,7 @@
 # install
 
 ~~~
-composer require pkg6/flysystem-github
+composer require yangweijie/flysystem-github
 ~~~
 
 # CDN List

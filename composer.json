@@ -1,5 +1,5 @@
 {
-  "name": "pkg6/flysystem-github",
+  "name": "yangweijie/flysystem-github",
   "description": "Flysystem adapter for the Github storage.",
   "license": "MIT",
   "require": {
@@ -15,7 +15,6 @@
     }
   },
   "require-dev": {
-    "laravel/framework": "^6|^7|^8",
     "phpunit/phpunit": "^6|^7|^8|^9",
     "mockery/mockery": "^1.2.3"
   },
