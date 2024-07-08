@@ -1,6 +1,6 @@
 {
-  "name": "yangweijie/flysystem-github",
-  "description": "Flysystem adapter for the Github storage.",
+  "name": "yangweijie/filesystem-github",
+  "description": "Filesystem adapter for the Github storage.",
   "license": "MIT",
   "require": {
     "php": "^7.2.5 || ^8.0",
