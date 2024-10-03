@@ -246,14 +246,25 @@ class GithubAdapter extends AbstractAdapter
     }
 
     /**
-     * Delete a directory.
+     * Delete a directory.  通过删除目录下的文件自动会删除目录
      *
      * @param string $dirname
      *
      * @return bool
+     * @throws MissingArgumentException
      */
     public function deleteDir($dirname)
     {
+        $list = $this->listContents($dirname);
+        if($list){
+            foreach ($list as $file) {
+                if ($file['type'] == 'file') {
+                    $this->delete($file['path']);
+                }else{
+                    $this->deleteDir($file['path']);
+                }
+            }
+        }
         return true;
     }
 
@@ -267,6 +278,10 @@ class GithubAdapter extends AbstractAdapter
      */
     public function createDir($dirname, Config $config)
     {
+        if($this->has($dirname)){
+            return true;
+        }
+        $this->write($dirname.'/dir.txt', '', $config);
         return true;
     }
 
@@ -339,11 +354,11 @@ class GithubAdapter extends AbstractAdapter
         if (empty($result) || $result === false) {
             return $list;
         }
-        foreach ($result as $item) {
-            $list[] = $item['path'];
+        foreach ($result as &$item) {
+            $item['basename'] = $item['name'];
         }
 
-        return $list;
+        return $result;
     }
 
     /**
